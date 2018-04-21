@@ -347,7 +347,7 @@ public final class CMPDL {
 			String redirectLocation = connection.getHeaderField("Location");
 			if(redirectLocation == null)
 				break;
-			// This gets parsed out later
+			redirectLocation = URLDecoder.decode(redirectLocation, "UTF-8");
 			redirectLocation = redirectLocation.replaceAll("\\%20", " ");
 
 			if(redirectLocation.startsWith("/"))

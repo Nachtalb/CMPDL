@@ -33,7 +33,7 @@ public class Interface {
 
 	private static String line1 = "";
 	private static String line2 = "";
-	
+
 	public static void openInterface() {
 		frame = new Frame();
 		setStatus("Idle");
@@ -49,24 +49,24 @@ public class Interface {
 	public static void setStatus(String status) {
 		setStatus(status, true);
 	}
-	
+
 	public static void setStatus(String status, boolean clear) {
 		line1 = status;
 		if(clear)
 			setStatus2("");
 		else updateLabel();
 	}
-	
+
 	public static void setStatus2(String status) {
 		line2 = status;
 		updateLabel();
 	}
-	
+
 	private static void updateLabel() {
 		if(frame != null)
 			frame.currentStatus.setText(String.format("<html>%s<br>%s</html>", line1, line2));
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static void finishDownload(boolean killThread) {
 		if(operatorThread != null && operatorThread.isAlive() && killThread) {
@@ -74,13 +74,13 @@ public class Interface {
 			operatorThread.stop();
 			operatorThread = null;
 		}
-		
+
 		if(frame != null)
 			frame.downloadButton.setText("Download");
-		
+
 		CMPDL.downloading = false;
 	}
-	
+
 	public static void error() {
 		finishDownload(false);
 		setStatus("Errored");
@@ -214,7 +214,7 @@ public class Interface {
 					String version = versionField.getText();
 					if(url != null && !url.isEmpty() && !downloading) {
 						operatorThread = new OperatorThread(url, version);
-						((JButton) e.getSource()).setText("Stop");	
+						((JButton) e.getSource()).setText("Stop");
 					}
 				}
 			}

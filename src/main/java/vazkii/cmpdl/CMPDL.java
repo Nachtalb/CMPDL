@@ -64,7 +64,7 @@ public final class CMPDL {
 			Interface.setStatus("Awaiting Further Input");
 			return;
 		}
-		
+
 		missingMods = new ArrayList<String>();
 		downloading = true;
 		log("~ Starting magical modpack download sequence ~");
@@ -124,14 +124,14 @@ public final class CMPDL {
 				log("WARNING: Some mods could not be downloaded. Either the specific versions were taken down from "
 						+ "public download on CurseForge, or there were errors in the download.");
 				log("The missing mods are the following:");
-				for(String mod : missingMods) 
+				for(String mod : missingMods)
 					log(" - " + mod);
 				log("");
 				log("If these mods are crucial to the modpack functioning, try downloading the server version of the pack "
 						+ "and pulling them from there.");
 			}
 			missingMods = null;
-			
+
 			log("################################################################################################");
 
 			Interface.setStatus("Complete");
@@ -288,7 +288,7 @@ public final class CMPDL {
 		log("Downloading " + file);
 		Interface.setStatus("File: " + file + " (" + (total - remaining) + "/" + total + ")");
 		Interface.setStatus2("Acquiring Info");
-		
+
 		String baseUrl = "http://minecraft.curseforge.com/projects/" + file.projectID;
 		log("Project URL is " + baseUrl);
 
@@ -318,10 +318,10 @@ public final class CMPDL {
 			try {
 				if(filename.equals("download"))
 					throw new FileNotFoundException("Invalid filename");
-				
+
 				if(f.exists())
 					log("This file already exists. No need to download it");
-				else 
+				else
 					downloadFileFromURL(f, new URL(finalUrl));
 				log("Downloaded! " + remaining + "/" + total + " remaining");
 			} catch(FileNotFoundException e) {
@@ -331,7 +331,7 @@ public final class CMPDL {
 				CMPDL.missingMods.add(finalUrl);
 			}
 		}
-		
+
 		log("");
 	}
 
@@ -347,7 +347,6 @@ public final class CMPDL {
 			String redirectLocation = connection.getHeaderField("Location");
 			if(redirectLocation == null)
 				break;
-			
 			// This gets parsed out later
 			redirectLocation = redirectLocation.replaceAll("\\%20", " ");
 
